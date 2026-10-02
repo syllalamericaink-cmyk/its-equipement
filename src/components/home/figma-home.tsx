@@ -214,12 +214,12 @@ export default function FigmaHome() {
   }
 
   const ProductRail = ({ title, eyebrow, items }: { title: string; eyebrow: string; items: Product[] }) => (
-    <section className='bg-white py-14 sm:py-18'>
+    <section className='bg-white py-10 sm:py-14 lg:py-20'>
       <div className='mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-16'>
         <div className='mb-8 flex items-end justify-between gap-4'>
           <div>
             <span className='text-[10px] font-extrabold uppercase tracking-[0.18em] text-its-lime'>{eyebrow}</span>
-            <h2 className='mt-2 text-[32px] font-black tracking-tight text-its-dark sm:text-[38px]'>{title}</h2>
+            <h2 className='mt-2 text-[28px] font-black tracking-tight sm:text-[36px] lg:text-[42px] text-its-dark sm:text-[38px]'>{title}</h2>
           </div>
           <Link href='/produits' className='hidden items-center gap-2 text-sm font-bold text-its-dark sm:inline-flex'>
             Voir le catalogue <ArrowRight className='h-4 w-4' />
@@ -246,7 +246,7 @@ export default function FigmaHome() {
                     className='group overflow-hidden rounded-[10px] border border-its-border bg-white transition-shadow hover:shadow-[0_14px_34px_rgba(7,27,46,0.10)]'
                   >
                     <Link href={'/produits/' + p.slug} className='block'>
-                      <div className='h-[220px] overflow-hidden bg-its-cream'>
+                      <div className='h-[180px] overflow-hidden sm:h-[210px] lg:h-[250px] bg-its-cream'>
                         {p.images?.[0]?.url ? (
                           <img
                             src={p.images[0].url}
@@ -295,7 +295,7 @@ export default function FigmaHome() {
   return (
     <div className='bg-white text-its-dark'>
       <section className='relative overflow-hidden bg-its-dark text-white'>
-        <div className='relative min-h-[560px] lg:min-h-[650px]'>
+        <div className='relative min-h-[430px] sm:min-h-[500px] lg:min-h-[680px]'>
           {heroImage ? (
             <img
               src={heroImage}
@@ -313,34 +313,34 @@ export default function FigmaHome() {
           ) : null}
           <div className='absolute inset-0 bg-gradient-to-r from-its-dark via-its-dark/95 via-[58%] to-its-dark/15' />
 
-          <div className='relative z-10 mx-auto flex min-h-[560px] max-w-[1440px] items-center px-5 py-16 sm:px-8 lg:min-h-[650px] lg:px-16'>
+          <div className='relative z-10 mx-auto flex min-h-[430px] max-w-[1440px] sm:min-h-[500px] lg:min-h-[680px] items-center px-4 py-10 sm:px-8 sm:py-14 lg:px-16 lg:py-20'>
             <div className='max-w-[720px]'>
-              <span className='inline-flex rounded-full bg-[#DDF8FB] px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-wide text-its-panel'>
+              <span className='inline-flex rounded-full max-w-full bg-[#DDF8FB] px-3 py-1.5 text-[9px] leading-4 sm:text-[10px] font-extrabold uppercase tracking-wide text-its-panel'>
                 ITS Équipement · ITSchool & Dynamic Group
               </span>
-              <h1 className='mt-6 text-[44px] font-black leading-[1.04] tracking-[-0.03em] sm:text-[54px] lg:text-[60px]'>
+              <h1 className='mt-6 text-[36px] font-black leading-[1.04] tracking-[-0.03em] sm:text-[52px] lg:text-[66px]'>
                 {heroTitle}
               </h1>
-              <p className='mt-5 max-w-[610px] text-[15px] leading-7 text-[#C7D4DE] sm:text-[17px]'>{heroText}</p>
+              <p className='mt-4 max-w-[610px] text-[14px] leading-6 sm:text-[16px] sm:leading-7 text-[#C7D4DE] sm:text-[17px]'>{heroText}</p>
 
-              <div className='mt-7 flex flex-wrap gap-3'>
+              <div className='mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap'>
                 <Link
                   href={slide?.href || '/produits'}
-                  className='inline-flex h-12 items-center gap-2 rounded-lg bg-[#FF7A1A] px-5 text-sm font-bold text-white'
+                  className='inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-[#FF7A1A] sm:w-auto px-5 text-sm font-bold text-white'
                 >
                   <Package className='h-4 w-4' />
                   Explorer les équipements
                 </Link>
                 <Link
                   href='/demande-devis'
-                  className='inline-flex h-12 items-center gap-2 rounded-lg bg-white px-5 text-sm font-bold text-its-dark'
+                  className='inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-white sm:w-auto px-5 text-sm font-bold text-its-dark'
                 >
                   <FileText className='h-4 w-4' />
                   Obtenir un devis
                 </Link>
               </div>
 
-              <div className='mt-9 flex flex-wrap gap-6 text-[11px] font-bold'>
+              <div className='mt-7 grid grid-cols-1 gap-2 text-[11px] sm:mt-9 sm:flex sm:grid-cols-none sm:flex-wrap sm:gap-6 font-bold'>
                 <span className='inline-flex items-center gap-2'>
                   <ShieldCheck className='h-4 w-4 text-its-lime' />
                   EPI & EPC
@@ -384,12 +384,12 @@ export default function FigmaHome() {
             </p>
           </div>
 
-          <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-5'>
+          <div className='flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 scrollbar-none sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:pb-0 lg:grid-cols-5'>
             {taxonomy.map(({ title, subtitle, href, Icon, iconIndex, description }) => (
               <Link
                 key={title}
                 href={href}
-                className='group rounded-[14px] border border-its-border bg-white p-5 transition-all hover:-translate-y-1 hover:border-its-lime hover:shadow-[0_14px_30px_rgba(7,27,46,0.08)]'
+                className='group min-w-[250px] snap-start rounded-[14px] sm:min-w-0 border border-its-border bg-white p-5 transition-all hover:-translate-y-1 hover:border-its-lime hover:shadow-[0_14px_30px_rgba(7,27,46,0.08)]'
               >
                 <span
                   className='block h-[92px] w-full overflow-hidden rounded-xl bg-its-cream'
@@ -413,19 +413,19 @@ export default function FigmaHome() {
         </div>
       </section>
 
-      <ProductRail title='Les essentiels EPI' eyebrow='Protection individuelle' items={epi} />
-      <ProductRail title='Les indispensables EPC' eyebrow='Protection collective' items={epc} />
+      <div id='epi'><ProductRail title='Les essentiels EPI' eyebrow='Protection individuelle' items={epi} /></div>
+      <div id='epc'><ProductRail title='Les indispensables EPC' eyebrow='Protection collective' items={epc} /></div>
 
-      <section className='bg-its-dark py-16 text-white sm:py-20'>
+      <section className='bg-its-dark py-12 text-white sm:py-16 lg:py-20'>
         <div className='mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-16'>
-          <div className='grid gap-6 lg:grid-cols-4'>
+          <div className='grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4'>
             {[
               { Icon: HardHat, title: 'Protection de la tête', text: 'Casques et équipements associés.' },
               { Icon: Eye, title: 'Protection des yeux', text: 'Lunettes et protections adaptées.' },
               { Icon: Hand, title: 'Protection des mains', text: 'Gants et solutions pour les métiers.' },
               { Icon: Flame, title: 'Sécurité incendie', text: 'Équipements collectifs et prévention.' },
             ].map(({ Icon, title, text }) => (
-              <div key={title} className='rounded-[12px] border border-white/10 bg-white/[0.04] p-6'>
+              <div key={title} className='rounded-[12px] border border-white/10 bg-white/[0.04] p-4 sm:p-6'>
                 <Icon className='h-6 w-6 text-its-lime' />
                 <h3 className='mt-5 text-base font-extrabold'>{title}</h3>
                 <p className='mt-2 text-sm leading-6 text-white/60'>{text}</p>
@@ -435,11 +435,11 @@ export default function FigmaHome() {
         </div>
       </section>
 
-      <section className='bg-white py-16 sm:py-20'>
-        <div className='mx-auto grid max-w-[1440px] items-center gap-10 px-5 sm:px-8 lg:grid-cols-[1fr_0.9fr] lg:px-16'>
+      <section id='devis' className='bg-white py-12 sm:py-16 lg:py-20'>
+        <div className='mx-auto grid max-w-[1440px] items-center gap-10 px-4 sm:px-8 lg:grid-cols-[1fr_0.9fr] lg:px-16'>
           <div>
             <span className='text-[10px] font-extrabold uppercase tracking-[0.18em] text-its-lime'>Pour les entreprises</span>
-            <h2 className='mt-2 max-w-2xl text-[34px] font-black leading-tight sm:text-[42px]'>
+            <h2 className='mt-2 max-w-2xl text-[30px] font-black leading-tight sm:text-[42px] lg:text-[48px]'>
               Équiper une équipe entière ? Passez par le devis.
             </h2>
             <p className='mt-4 max-w-xl text-sm leading-6 text-its-gray'>
@@ -478,14 +478,14 @@ export default function FigmaHome() {
             </div>
           </div>
 
-          <div className='grid gap-4 sm:grid-cols-2'>
+          <div className='grid grid-cols-2 gap-3 sm:gap-4'>
             {[
               { Icon: Factory, title: 'Industrie', text: 'Équiper les équipes et zones de travail.' },
               { Icon: HardHat, title: 'BTP', text: 'Protection individuelle et collective sur chantier.' },
               { Icon: Truck, title: 'Logistique', text: 'Tenues et protections pour les opérations.' },
               { Icon: Wrench, title: 'Maintenance', text: 'Équipements adaptés aux interventions.' },
             ].map(({ Icon, title, text }) => (
-              <div key={title} className='rounded-[14px] border border-its-border bg-its-cream p-6'>
+              <div key={title} className='rounded-[14px] border border-its-border bg-its-cream p-4 sm:p-6'>
                 <Icon className='h-6 w-6 text-its-dark' />
                 <h3 className='mt-5 font-extrabold'>{title}</h3>
                 <p className='mt-2 text-xs leading-5 text-its-gray'>{text}</p>
@@ -495,7 +495,7 @@ export default function FigmaHome() {
         </div>
       </section>
 
-      <section className='bg-its-cream py-16 sm:py-20'>
+      <section id='personnalisation' className='bg-its-cream py-12 sm:py-16 lg:py-20'>
         <div className='mx-auto grid max-w-[1440px] gap-8 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-16'>
           <div className='rounded-[14px] border border-its-border bg-white p-7 sm:p-9'>
             <span className='text-[10px] font-extrabold uppercase tracking-[0.18em] text-its-lime'>Personnalisation</span>
@@ -508,7 +508,7 @@ export default function FigmaHome() {
             </Link>
           </div>
 
-          <div className='grid gap-3 sm:grid-cols-3'>
+          <div className='grid grid-cols-2 gap-3 sm:grid-cols-3'>
             {[
               { Icon: ShieldCheck, title: 'EPI', text: 'Protection individuelle au catalogue.' },
               { Icon: Package, title: 'EPC', text: 'Protection collective et sécurité.' },
@@ -524,7 +524,7 @@ export default function FigmaHome() {
         </div>
       </section>
 
-      <section className='bg-its-lime py-12 sm:py-14'>
+      <section className='bg-its-lime py-10 sm:py-14 lg:py-16'>
         <div className='mx-auto flex max-w-[1440px] flex-col gap-6 px-5 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-16'>
           <div>
             <p className='text-[10px] font-extrabold uppercase tracking-[0.18em] text-its-dark/65'>ITS Équipement</p>
