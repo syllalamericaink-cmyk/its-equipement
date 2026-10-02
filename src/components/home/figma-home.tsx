@@ -111,7 +111,7 @@ const taxonomy = [
     title: 'Chaussures de sécurité',
     subtitle: 'Protection des pieds',
     href: '/produits?search=chaussure',
-    Icon: FootnoteIcon,
+    Icon: Factory,
     iconIndex: 3,
     description: 'Chaussures et bottes pour chantier, industrie et environnement professionnel.',
   },
