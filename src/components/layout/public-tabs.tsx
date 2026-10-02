@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Home, LayoutGrid, FileText, ShoppingCart, Phone } from 'lucide-react'
+import { Home, LayoutGrid, FileText, ShoppingCart, UserRound } from 'lucide-react'
 import { useCartStore } from '@/stores/cart-store'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -27,7 +27,7 @@ const TABS = [
   },
   {
     href: '/produits',
-    label: 'Produits',
+    label: 'Catégories',
     icon: LayoutGrid,
     isActive: (p: string) => p.startsWith('/produits') || p.startsWith('/categories'),
   },
@@ -45,10 +45,10 @@ const TABS = [
     isActive: (p: string) => p.startsWith('/panier') || p.startsWith('/commande'),
   },
   {
-    href: '/contact',
-    label: 'Contact',
-    icon: Phone,
-    isActive: (p: string) => p.startsWith('/contact'),
+    href: '/auth/login',
+    label: 'Compte',
+    icon: UserRound,
+    isActive: (p: string) => p.startsWith('/auth') || p.startsWith('/compte'),
   },
 ]
 
@@ -110,7 +110,7 @@ export function PublicTabs() {
         {/* Carré lime glissant — indicateur de l'onglet actif */}
         <span
           aria-hidden="true"
-          className={`pointer-events-none absolute left-0 top-0 z-0 h-14 w-14 -translate-y-4 rounded-[4px] bg-its-lime ring-4 ring-white transition-[left,opacity] duration-300 ease-out ${
+          className={`pointer-events-none absolute left-0 top-0 z-0 h-14 w-14 -translate-y-4 rounded-[4px] bg-[#FF6A00] ring-4 ring-white transition-[left,opacity] duration-300 ease-out ${
             activeIndex >= 0 ? 'opacity-100' : 'opacity-0'
           }`}
           style={{ left: `calc(${activeIndex >= 0 ? activeIndex : 0} * 20% + 10% - 28px)` }}
@@ -131,7 +131,7 @@ export function PublicTabs() {
                 aria-label={`Panier${itemCount > 0 ? ` (${itemCount} articles)` : ''} — ouvrir le panier rapide`}
                 aria-current={active ? 'page' : undefined}
                 className={`relative z-10 flex min-h-[64px] flex-col items-center gap-0.5 pt-1.5 text-[11px] font-medium transition-colors ${
-                  active ? 'text-its-dark' : 'text-its-gray hover:text-its-dark'
+                  active ? 'text-[#FF6A00]' : 'text-its-gray hover:text-its-dark'
                 }`}
               >
                 <span className="relative">
