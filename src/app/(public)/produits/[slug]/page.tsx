@@ -67,13 +67,13 @@ function getStockInfo(stock: number) {
 
 function LoadingSkeleton() {
   return (
-    <section className="container mx-auto px-4 py-6 sm:py-8">
+    <section className="mx-auto w-full max-w-[1536px] px-3 py-5 sm:px-6 sm:py-8 lg:px-10">
       <Button variant="ghost" size="sm" className="mb-4 min-h-[44px]" disabled>
         <ArrowLeft className="size-4 mr-2" />
         <Skeleton className="h-4 w-28" />
       </Button>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
-        <Skeleton className="h-72 sm:h-80 lg:h-[480px] w-full rounded-lg" />
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-[1.02fr_0.98fr] lg:gap-10">
+        <Skeleton className="h-[330px] w-full rounded-2xl sm:h-[430px] lg:h-[560px]" />
         <div className="space-y-4">
           <Skeleton className="h-5 w-24" />
           <Skeleton className="h-7 w-3/4" />
@@ -539,7 +539,7 @@ export default function ProductDetailPage() {
           <div className="flex flex-col sm:flex-row gap-3">
             <Button
               size="lg"
-              className="flex-1 min-h-[48px] text-base"
+              className="flex-1 min-h-12 rounded-xl bg-[#FF6A00] text-base text-white hover:bg-[#e85d00]"
               onClick={handleAddToCart}
               disabled={allOutOfStock}
             >
@@ -549,7 +549,7 @@ export default function ProductDetailPage() {
             <Button
               size="lg"
               variant="default"
-              className="flex-1 min-h-[48px] text-base bg-emerald-600 hover:bg-emerald-700 text-white"
+              className="flex-1 min-h-12 rounded-xl border border-[#19A463] bg-white text-base text-[#13804d] hover:bg-[#ecfbf4]"
               onClick={() => {
                 if (allOutOfStock) {
                   toast.error('Ce produit est en rupture de stock')
@@ -575,7 +575,7 @@ export default function ProductDetailPage() {
               Acheter maintenant
             </Button>
           </div>
-          <p className="text-xs text-muted-foreground text-center mt-2">
+          <p className="mt-2 text-center text-xs text-its-gray">
             Achat direct : votre commande est envoyée sur WhatsApp pour validation.
           </p>
         </div>
