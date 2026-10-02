@@ -88,7 +88,7 @@ const taxonomy = [
     subtitle: 'Protection individuelle',
     href: '/produits?search=EPI',
     Icon: HardHat,
-    iconIndex: 0,
+    visual: '/visuals/epi.svg',
     description: 'Tête, yeux, mains, pieds, corps, antichute et autres protections.',
   },
   {
@@ -96,7 +96,7 @@ const taxonomy = [
     subtitle: 'Protection collective',
     href: '/produits?search=EPC',
     Icon: ShieldCheck,
-    iconIndex: 1,
+    visual: '/visuals/epc.svg',
     description: 'Signalisation, sécurité incendie, balisage et équipements collectifs.',
   },
   {
@@ -104,7 +104,7 @@ const taxonomy = [
     subtitle: 'Tenues métier',
     href: '/produits?search=vêtement',
     Icon: Shirt,
-    iconIndex: 2,
+    visual: '/visuals/workwear.svg',
     description: 'Tenues de travail, haute visibilité et vêtements adaptés aux métiers.',
   },
   {
@@ -112,7 +112,7 @@ const taxonomy = [
     subtitle: 'Protection des pieds',
     href: '/produits?search=chaussure',
     Icon: Factory,
-    iconIndex: 3,
+    visual: '/visuals/footwear.svg',
     description: 'Chaussures et bottes pour chantier, industrie et environnement professionnel.',
   },
   {
@@ -120,7 +120,7 @@ const taxonomy = [
     subtitle: 'Logo & marquage',
     href: '/produits?personalizable=1',
     Icon: Wrench,
-    iconIndex: 4,
+    visual: '/visuals/customization.svg',
     description: 'Logo, texte, broderie ou marquage selon les produits disponibles.',
   },
 ]
@@ -189,7 +189,7 @@ export default function FigmaHome() {
   )
 
   const slide = hero[0]
-  const heroImage = slide?.url || epi[0]?.images?.[0]?.url || epc[0]?.images?.[0]?.url
+  const heroImage = slide?.url || epi[0]?.images?.[0]?.url || epc[0]?.images?.[0]?.url || '/visuals/epi.svg'
   const heroTitle = slide?.title || 'EPI & EPC pour protéger vos équipes'
   const heroText =
     slide?.text ||
@@ -213,9 +213,12 @@ export default function FigmaHome() {
     setAdded((s) => new Set(s).add(p.id))
   }
 
-  const ProductRail = ({ title, eyebrow, items }: { title: string; eyebrow: string; items: Product[] }) => (
+  const ProductRail = ({ title, eyebrow, items, visual }: { title: string; eyebrow: string; items: Product[]; visual: string }) => (
     <section className='bg-white py-10 sm:py-14 lg:py-20'>
       <div className='mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-16'>
+        <div className='mb-6 overflow-hidden rounded-2xl border border-its-border'>
+          <img src={visual} alt='' className='h-[150px] w-full object-cover sm:h-[190px] lg:h-[230px]' loading='lazy' />
+        </div>
         <div className='mb-8 flex items-end justify-between gap-4'>
           <div>
             <span className='text-[10px] font-extrabold uppercase tracking-[0.18em] text-its-lime'>{eyebrow}</span>
@@ -401,7 +404,7 @@ export default function FigmaHome() {
           </div>
 
           <div className='grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-5'>
-            {taxonomy.map(({ title, subtitle, href, Icon, iconIndex, description }) => (
+            {taxonomy.map(({ title, subtitle, href, Icon, visual, description }) => (
               <Link
                 key={title}
                 href={href}
@@ -429,8 +432,8 @@ export default function FigmaHome() {
         </div>
       </section>
 
-      <div id='epi'><ProductRail title='Les essentiels EPI' eyebrow='Protection individuelle' items={epi} /></div>
-      <div id='epc'><ProductRail title='Les indispensables EPC' eyebrow='Protection collective' items={epc} /></div>
+      <div id='epi'><ProductRail title='Les essentiels EPI' eyebrow='Protection individuelle' items={epi} visual='/visuals/epi.svg' /></div>
+      <div id='epc'><ProductRail title='Les indispensables EPC' eyebrow='Protection collective' items={epc} visual='/visuals/epc.svg' /></div>
 
       <section className='bg-its-dark py-12 text-white sm:py-16 lg:py-20'>
         <div className='mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-16'>
@@ -494,19 +497,9 @@ export default function FigmaHome() {
             </div>
           </div>
 
-          <div className='grid grid-cols-2 gap-3 sm:gap-4'>
-            {[
-              { Icon: Factory, title: 'Industrie', text: 'Équiper les équipes et zones de travail.' },
-              { Icon: HardHat, title: 'BTP', text: 'Protection individuelle et collective sur chantier.' },
-              { Icon: Truck, title: 'Logistique', text: 'Tenues et protections pour les opérations.' },
-              { Icon: Wrench, title: 'Maintenance', text: 'Équipements adaptés aux interventions.' },
-            ].map(({ Icon, title, text }) => (
-              <div key={title} className='rounded-[14px] border border-its-border bg-its-cream p-4 sm:p-6'>
-                <Icon className='h-6 w-6 text-its-dark' />
-                <h3 className='mt-5 font-extrabold'>{title}</h3>
-                <p className='mt-2 text-xs leading-5 text-its-gray'>{text}</p>
-              </div>
-            ))}
+          <div className='space-y-4'>
+            <img src='/visuals/enterprise.svg' alt='Accompagnement des entreprises' className='w-full rounded-2xl border border-its-border' loading='lazy' />
+            <img src='/visuals/delivery.svg' alt='Livraison en Côte d’Ivoire' className='w-full rounded-2xl border border-its-border' loading='lazy' />
           </div>
         </div>
       </section>
@@ -524,19 +517,7 @@ export default function FigmaHome() {
             </Link>
           </div>
 
-          <div className='grid grid-cols-2 gap-3 sm:grid-cols-3'>
-            {[
-              { Icon: ShieldCheck, title: 'EPI', text: 'Protection individuelle au catalogue.' },
-              { Icon: Package, title: 'EPC', text: 'Protection collective et sécurité.' },
-              { Icon: Shirt, title: 'Tenues', text: 'Vêtements et chaussures professionnels.' },
-            ].map(({ Icon, title, text }) => (
-              <div key={title} className='rounded-[12px] border border-its-border bg-white p-5'>
-                <Icon className='h-6 w-6 text-its-dark' />
-                <h3 className='mt-5 text-base font-extrabold'>{title}</h3>
-                <p className='mt-2 text-xs leading-5 text-its-gray'>{text}</p>
-              </div>
-            ))}
-          </div>
+          <img src='/visuals/customization.svg' alt='Personnalisation des vêtements et équipements' className='w-full rounded-2xl border border-its-border' loading='lazy' />
         </div>
       </section>
 
