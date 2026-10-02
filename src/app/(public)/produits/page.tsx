@@ -229,9 +229,9 @@ function ProduitsPage() {
   }, [categoryIdParam, categories])
 
   return (
-    <section className="container mx-auto px-4 py-6 sm:py-8">
-      <div className="mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
+    <section className="mx-auto w-full max-w-[1536px] px-3 py-5 sm:px-6 sm:py-8 lg:px-10">
+      <div className="mb-5 sm:mb-7">
+        <h1 className="text-[28px] font-black tracking-tight text-its-dark sm:text-4xl">
           {personalizableParam ? 'Produits personnalisables' : 'Catalogue'}
         </h1>
         {!loading && (
@@ -243,24 +243,24 @@ function ProduitsPage() {
         )}
       </div>
 
-      <div className="flex flex-col gap-3 mb-6">
+      <div className="mb-5 rounded-2xl border border-its-border bg-white p-3 shadow-[0_6px_24px_rgba(7,27,46,0.05)] sm:p-4">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
           <Input
             placeholder="Rechercher un produit..."
             value={searchInput}
             onChange={(e) => handleSearchChange(e.target.value)}
-            className="pl-9 min-h-[44px]"
+            className="h-12 rounded-xl border-0 bg-its-light pl-10 text-sm shadow-none focus-visible:ring-1 focus-visible:ring-its-dark"
             aria-label="Rechercher un produit"
           />
         </div>
 
-        <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+        <div className="mt-3 flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
           <Button
             variant={!categoryIdParam ? 'default' : 'outline'}
             size="sm"
             onClick={() => handleCategoryChange('')}
-            className="shrink-0 min-h-[44px]"
+            className="shrink-0 min-h-10 rounded-full border-its-border px-4 text-xs font-bold"
           >
             Toutes
           </Button>
@@ -285,7 +285,7 @@ function ProduitsPage() {
           </Button>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="mt-3 flex items-center gap-2">
           <SlidersHorizontal className="size-4 text-muted-foreground shrink-0" />
           <Select value={sortParam} onValueChange={handleSortChange}>
             <SelectTrigger className="w-full sm:w-[180px] min-h-[44px]">
@@ -303,7 +303,7 @@ function ProduitsPage() {
       </div>
 
       {loading ? (
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 sm:gap-4 lg:gap-5">
           {Array.from({ length: 6 }).map((_, i) => (
             <ProductCardSkeleton key={i} />
           ))}
@@ -334,13 +334,13 @@ function ProduitsPage() {
             {paginatedProducts.map((product) => (
               <Card
                 key={product.id}
-                className="group overflow-hidden transition-colors hover:border-primary/30 cursor-pointer"
+                className="group flex min-h-[118px] cursor-pointer overflow-hidden rounded-2xl border border-its-border bg-white shadow-[0_4px_18px_rgba(7,27,46,0.05)] transition-all hover:-translate-y-0.5 hover:border-its-lime lg:block"
                 onClick={() => router.push(`/produits/${product.slug}`)}
               >
-                <div className="relative h-44 sm:h-48 bg-muted overflow-hidden">
+                <div className="relative h-[118px] w-[118px] shrink-0 overflow-hidden bg-its-cream sm:h-[150px] sm:w-[150px] lg:h-60 lg:w-full">
                   {product.images.length > 0 && product.images[0].url ? (
                     <div
-                      className="h-full w-full bg-cover bg-center transition-transform group-hover:scale-105"
+                      className="h-full w-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
                       style={{ backgroundImage: `url(${product.images[0].url})` }}
                       role="img"
                       aria-label={product.images[0].altText || product.name}
@@ -351,19 +351,19 @@ function ProduitsPage() {
                     </div>
                   )}
                   {product.isPersonalizable && (
-                    <Badge className="absolute top-2 left-2 bg-primary text-primary-foreground text-[10px] px-1.5 py-0.5">
+                    <Badge className="absolute left-2 top-2 bg-its-dark text-white text-[9px] px-2 py-1 rounded-full">
                       Personnalisable
                     </Badge>
                   )}
                 </div>
-                <CardContent className="p-3 sm:p-4">
-                  <p className="text-xs text-muted-foreground mb-1 truncate">
+                <CardContent className="flex min-w-0 flex-1 flex-col justify-center p-3 sm:p-4 lg:block">
+                  <p className="mb-1 truncate text-[10px] font-bold uppercase tracking-wide text-its-gray">
                     {product.category.name}
                   </p>
-                  <h3 className="font-semibold text-sm leading-tight line-clamp-2 mb-2 group-hover:text-primary transition-colors">
+                  <h3 className="mb-2 line-clamp-2 text-sm font-extrabold leading-5 text-its-dark transition-colors group-hover:text-its-dark sm:text-[15px]">
                     {product.name}
                   </h3>
-                  <p className="font-bold text-primary text-sm sm:text-base">
+                  <p className="text-sm font-black text-its-dark sm:text-base">
                     {formatCurrency(product.basePrice)}
                   </p>
                 </CardContent>
