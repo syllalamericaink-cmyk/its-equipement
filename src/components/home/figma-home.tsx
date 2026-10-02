@@ -524,7 +524,7 @@ export default function FigmaHome() {
         </div>
       </section>
 
-      <section className='bg-its-lime py-10 sm:py-14 lg:py-16'>
+      <section id='contact' className='bg-its-lime py-10 sm:py-14 lg:py-16'>
         <div className='mx-auto flex max-w-[1440px] flex-col gap-6 px-5 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-16'>
           <div>
             <p className='text-[10px] font-extrabold uppercase tracking-[0.18em] text-its-dark/65'>ITS Équipement</p>
