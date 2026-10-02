@@ -23,11 +23,11 @@ function Logo() {
       <img
         src='/logo-its-equipement.jpg'
         alt='ITS Équipement'
-        className='h-[42px] w-[42px] rounded-[8px] object-cover'
+        className='h-[38px] w-[38px] rounded-[8px] object-cover sm:h-[42px] sm:w-[42px]'
       />
       <span className='flex flex-col leading-none'>
-        <span className='text-[17px] font-black tracking-tight text-its-dark'>ÉQUIPEMENT</span>
-        <span className='mt-1 text-[9px] font-bold uppercase tracking-[0.18em] text-its-gray'>EPI · EPC · professionnel</span>
+        <span className='text-[15px] font-black tracking-tight text-its-dark sm:text-[17px]'>ÉQUIPEMENT</span>
+        <span className='mt-1 hidden text-[8px] font-bold uppercase tracking-[0.14em] text-its-gray sm:block sm:text-[9px] sm:tracking-[0.18em]'>EPI · EPC · professionnel</span>
       </span>
     </Link>
   )
@@ -54,7 +54,7 @@ export function PublicHeader() {
 
   return (
     <header className='sticky top-0 z-50 w-full bg-white'>
-      <div className='bg-its-dark text-white'>
+      <div className='hidden bg-its-dark text-white sm:block'>
         <div className='mx-auto flex h-[34px] max-w-[1440px] items-center justify-between gap-4 px-5 text-[10px] sm:px-8 lg:px-16'>
           <span className='font-semibold'>EPI & EPC · Équipement professionnel · Côte d’Ivoire</span>
           <div className='hidden items-center gap-5 sm:flex'>
@@ -74,7 +74,7 @@ export function PublicHeader() {
       </div>
 
       <div className='border-b border-its-border bg-white'>
-        <div className='mx-auto flex min-h-[78px] max-w-[1440px] items-center justify-between gap-6 px-5 sm:px-8 lg:px-16'>
+        <div className='mx-auto flex min-h-[64px] max-w-[1536px] items-center justify-between gap-3 px-3 sm:min-h-[78px] sm:gap-6 sm:px-8 lg:px-16'>
           <Logo />
 
           <nav className='hidden flex-1 items-center justify-center gap-7 lg:flex' aria-label='Navigation principale'>
@@ -120,7 +120,15 @@ export function PublicHeader() {
             </Link>
           </div>
 
-          <div className='flex items-center gap-2 lg:hidden'>
+          <div className='flex items-center gap-1.5 lg:hidden'>
+            <button
+              type='button'
+              aria-label='Rechercher un équipement'
+              onClick={() => router.push('/produits')}
+              className='grid h-10 w-10 place-items-center rounded-lg text-its-dark hover:bg-its-cream'
+            >
+              <Search className='h-5 w-5' />
+            </button>
             <Link href='/panier' aria-label='Panier' className='relative grid h-11 w-11 place-items-center rounded-lg'>
               <ShoppingBag className='h-5 w-5' />
               {count > 0 ? <span className='absolute right-1 top-1 min-w-4 rounded-full bg-its-lime px-1 text-center text-[9px] font-bold'>{count}</span> : null}
