@@ -359,12 +359,28 @@ export default function FigmaHome() {
         </div>
       </section>
 
+      <section className='border-b border-its-border bg-white py-3 sm:py-4'>
+        <div className='mx-auto grid max-w-[1440px] grid-cols-3 gap-2 px-3 sm:gap-3 sm:px-8 lg:px-16'>
+          {[
+            { Icon: ShieldCheck, title: 'Qualité contrôlée', text: 'Équipements sélectionnés' },
+            { Icon: Truck, title: 'Livraison en CI', text: 'Abidjan & environs' },
+            { Icon: FileText, title: 'Devis rapide', text: 'Pour vos commandes' },
+          ].map(({ Icon, title, text }) => (
+            <div key={title} className='flex min-h-[74px] flex-col items-center justify-center rounded-xl border border-its-border bg-its-light/60 px-2 py-2 text-center sm:min-h-[84px]'>
+              <Icon className='h-5 w-5 text-its-dark sm:h-6 sm:w-6' />
+              <p className='mt-1 text-[10px] font-extrabold leading-tight text-its-dark sm:text-xs'>{title}</p>
+              <p className='mt-0.5 hidden text-[10px] text-its-gray sm:block'>{text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section className='border-b border-its-border bg-its-cream py-8 sm:py-10'>
         <div className='mx-auto flex max-w-[1440px] flex-col gap-6 px-5 sm:px-8 lg:flex-row lg:items-center lg:px-16'>
           <div className='w-full lg:w-[310px]'>
             <span className='text-[10px] font-extrabold uppercase tracking-[0.18em] text-its-lime'>Entreprises</span>
             <h2 className='mt-2 text-[26px] font-black'>Besoin de plusieurs références ?</h2>
-            <p className='mt-2 text-xs leading-5 text-its-gray'>
+            <p className='mt-2 text-[11px] leading-5 sm:text-xs text-its-gray'>
               Décrivez votre besoin en EPI/EPC et notre équipe prépare une proposition adaptée.
             </p>
           </div>
@@ -384,15 +400,15 @@ export default function FigmaHome() {
             </p>
           </div>
 
-          <div className='flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 scrollbar-none sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:pb-0 lg:grid-cols-5'>
+          <div className='grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-5'>
             {taxonomy.map(({ title, subtitle, href, Icon, iconIndex, description }) => (
               <Link
                 key={title}
                 href={href}
-                className='group min-w-[250px] snap-start rounded-[14px] sm:min-w-0 border border-its-border bg-white p-5 transition-all hover:-translate-y-1 hover:border-its-lime hover:shadow-[0_14px_30px_rgba(7,27,46,0.08)]'
+                className='group rounded-[14px] border border-its-border bg-white p-5 transition-all hover:-translate-y-1 hover:border-its-lime hover:shadow-[0_14px_30px_rgba(7,27,46,0.08)]'
               >
                 <span
-                  className='block h-[92px] w-full overflow-hidden rounded-xl bg-its-cream'
+                  className='block h-[82px] w-full sm:h-[96px] lg:h-[110px] overflow-hidden rounded-xl bg-its-cream'
                   aria-hidden='true'
                   style={{
                     backgroundImage: "url('/icons/equipment-category-icons.webp')",
@@ -401,10 +417,10 @@ export default function FigmaHome() {
                     backgroundPosition: (iconIndex * 25) + '% center',
                   }}
                 />
-                <p className='mt-5 text-[10px] font-extrabold uppercase tracking-[0.14em] text-its-gray'>{subtitle}</p>
-                <h3 className='mt-2 text-lg font-black'>{title}</h3>
+                <p className='mt-3 text-[9px] sm:mt-5 sm:text-[10px] font-extrabold uppercase tracking-[0.14em] text-its-gray'>{subtitle}</p>
+                <h3 className='mt-2 text-base font-black sm:text-lg'>{title}</h3>
                 <p className='mt-2 text-xs leading-5 text-its-gray'>{description}</p>
-                <span className='mt-5 inline-flex items-center gap-2 text-xs font-bold'>
+                <span className='mt-4 hidden items-center gap-2 text-xs sm:inline-flex font-bold'>
                   Voir la gamme <ArrowRight className='h-3.5 w-3.5' />
                 </span>
               </Link>
