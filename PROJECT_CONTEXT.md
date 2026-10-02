@@ -46,8 +46,9 @@ Next.js 16, React 19, TypeScript, Tailwind CSS 4, shadcn/ui/Radix, Framer Motion
 ✅ Header public réaligné sur EPI/EPC.
 ✅ Homepage réalignée sur EPI/EPC.
 ✅ Footer réaligné sur l'activité équipement.
+✅ Visuels SVG dédiés ajoutés pour EPI, EPC, vêtements, chaussures, personnalisation, entreprises et livraison.
 🟡 Build CI à vérifier après ce lot.
-➡️ Prochaine étape : vérifier le catalogue, les fiches produits, puis le tunnel commande/devis avec la même direction visuelle.
+➡️ Prochaine étape : vérifier visuellement le catalogue, les fiches produits, puis le tunnel commande/devis avec la même direction visuelle.
 
 ## Contraintes
 - Ne pas demander ou stocker de secrets.
