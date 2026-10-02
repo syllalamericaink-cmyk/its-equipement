@@ -1,0 +1,51 @@
+import { requireAdmin } from '@/lib/api-auth'
+import { success, error, serverError } from '@/lib/api-response'
+import { getPublicOrderById, changePublicOrderStatus } from '@/lib/services/public-order.service'
+import { syncOrderToSheets } from '@/lib/services/google-sheets.service'
+import { after, type NextRequest } from 'next/server'
+
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { error: authError } = await requireAdmin(request)
+    if (authError) return authError
+
+    const { id } = await params
+    const order = await getPublicOrderById(id)
+    if (!order) return error('Commande introuvable', 404)
+
+    return success(order)
+  } catch (err) {
+    console.error('[api /admin/public-orders/[id]] Erreur:', err)
+    return serverError()
+  }
+}
+
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { error: authError, session } = await requireAdmin(request)
+    if (authError) return authError
+
+    const { id } = await params
+    const body = await request.json()
+
+    if (body.status) {
+      const order = await changePublicOrderStatus(id, body.status, session!.user.id)
+      // Suivi Google Sheets : la ligne de la commande est mise à jour après la réponse
+      after(async () => {
+        await syncOrderToSheets(id)
+      })
+      return success(order)
+    }
+
+    return error('Aucune donnee a mettre a jour')
+  } catch (err) {
+    console.error('[api /admin/public-orders/[id]] Erreur:', err)
+    return serverError()
+  }
+}

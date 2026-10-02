@@ -1,0 +1,49 @@
+import { createQuoteRequest } from '@/lib/services/quote-request.service'
+import { sendQuoteRequestTelegramNotification } from '@/lib/services/telegram.service'
+import { quoteRequestSchema } from '@/lib/validation'
+import { success, error, serverError } from '@/lib/api-response'
+import { after, type NextRequest } from 'next/server'
+
+const qrRateMap = new Map<string, { count: number; resetAt: number }>()
+
+function checkQuoteRequestRateLimit(ip: string): boolean {
+  const now = Date.now()
+  const entry = qrRateMap.get(ip)
+  if (!entry || now > entry.resetAt) {
+    qrRateMap.set(ip, { count: 1, resetAt: now + 300000 })
+    return true
+  }
+  entry.count++
+  return entry.count <= 5
+}
+
+export async function POST(request: NextRequest) {
+  try {
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown'
+    if (!checkQuoteRequestRateLimit(ip)) {
+      return error('Trop de demandes de devis. Réessayez plus tard.', 429)
+    }
+
+    const body = await request.json()
+    const parsed = quoteRequestSchema.safeParse(body)
+    if (!parsed.success) {
+      const firstError = parsed.error.issues[0]
+      return error(firstError?.message ?? 'Données invalides', 422)
+    }
+
+    const result = await createQuoteRequest(parsed.data)
+
+    // Notification Telegram immédiate (simple et systématique) — non bloquante.
+    after(async () => {
+      await sendQuoteRequestTelegramNotification(result.id)
+    })
+
+    return success(result, undefined)
+  } catch (e) {
+    // Erreurs métier (produit introuvable, quantité minimum non atteinte...) : message clair pour le client
+    if (e instanceof Error && e.message && !e.message.includes('Invalid')) {
+      return error(e.message, 400)
+    }
+    return serverError()
+  }
+}
