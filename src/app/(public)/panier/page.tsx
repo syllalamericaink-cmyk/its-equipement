@@ -90,8 +90,8 @@ export default function PanierPage() {
   }
 
   return (
-    <section className="container py-8 px-4 md:px-6 max-w-4xl mx-auto">
-      <h1 className="text-2xl md:text-3xl font-bold tracking-tight mb-6">
+    <section className="mx-auto w-full max-w-[1280px] px-3 py-5 sm:px-6 sm:py-8 lg:px-10">
+      <h1 className="mb-6 text-[30px] font-black tracking-tight text-its-dark sm:text-4xl">
         Votre panier
       </h1>
 
@@ -214,7 +214,7 @@ export default function PanierPage() {
         {items.map((item) => {
           const lineTotal = item.unitPrice * item.quantity
           return (
-            <div key={item.id} className="rounded-lg border p-4">
+            <div key={item.id} className="rounded-2xl border border-its-border bg-white p-3 shadow-[0_4px_18px_rgba(7,27,46,0.05)] sm:p-4">
               <div className="flex gap-4">
                 <div
                   className="size-16 rounded-lg bg-muted shrink-0 bg-cover bg-center"
@@ -326,13 +326,13 @@ export default function PanierPage() {
         )}
         <Separator className="mb-4" />
         <div className="flex flex-col gap-3">
-          <Button asChild size="lg" className="w-full h-12 text-base bg-emerald-600 hover:bg-emerald-700 text-white">
+          <Button asChild size="lg" className="w-full h-12 rounded-xl bg-[#FF6A00] text-base text-white hover:bg-[#e85d00]">
             <Link href="/commande">
               <MessageCircle className="size-4 mr-2" />
               Commander sur WhatsApp
             </Link>
           </Button>
-          <Button asChild variant="outline" size="lg" className="w-full h-12 text-base">
+          <Button asChild variant="outline" size="lg" className="w-full h-12 rounded-xl border-its-dark text-base font-bold">
             <Link href="/devis">
               <FileText className="size-4 mr-2" />
               Demander un devis
