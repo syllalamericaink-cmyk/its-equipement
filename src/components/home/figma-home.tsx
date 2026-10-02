@@ -88,6 +88,7 @@ const taxonomy = [
     subtitle: 'Protection individuelle',
     href: '/produits?search=EPI',
     Icon: HardHat,
+    iconIndex: 0,
     description: 'Tête, yeux, mains, pieds, corps, antichute et autres protections.',
   },
   {
@@ -95,6 +96,7 @@ const taxonomy = [
     subtitle: 'Protection collective',
     href: '/produits?search=EPC',
     Icon: ShieldCheck,
+    iconIndex: 1,
     description: 'Signalisation, sécurité incendie, balisage et équipements collectifs.',
   },
   {
@@ -102,6 +104,7 @@ const taxonomy = [
     subtitle: 'Tenues métier',
     href: '/produits?search=vêtement',
     Icon: Shirt,
+    iconIndex: 2,
     description: 'Tenues de travail, haute visibilité et vêtements adaptés aux métiers.',
   },
   {
@@ -109,6 +112,7 @@ const taxonomy = [
     subtitle: 'Protection des pieds',
     href: '/produits?search=chaussure',
     Icon: FootnoteIcon,
+    iconIndex: 3,
     description: 'Chaussures et bottes pour chantier, industrie et environnement professionnel.',
   },
   {
@@ -116,13 +120,10 @@ const taxonomy = [
     subtitle: 'Logo & marquage',
     href: '/produits?personalizable=1',
     Icon: Wrench,
+    iconIndex: 4,
     description: 'Logo, texte, broderie ou marquage selon les produits disponibles.',
   },
 ]
-
-function FootnoteIcon({ className }: { className?: string }) {
-  return <Factory className={className} aria-hidden='true' />
-}
 
 export default function FigmaHome() {
   const [categories, setCategories] = useState<Category[]>([])
@@ -384,15 +385,22 @@ export default function FigmaHome() {
           </div>
 
           <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-5'>
-            {taxonomy.map(({ title, subtitle, href, Icon, description }) => (
+            {taxonomy.map(({ title, subtitle, href, Icon, iconIndex, description }) => (
               <Link
                 key={title}
                 href={href}
                 className='group rounded-[14px] border border-its-border bg-white p-5 transition-all hover:-translate-y-1 hover:border-its-lime hover:shadow-[0_14px_30px_rgba(7,27,46,0.08)]'
               >
-                <span className='grid h-12 w-12 place-items-center rounded-xl bg-its-cream text-its-dark group-hover:bg-its-lime'>
-                  <Icon className='h-5 w-5' />
-                </span>
+                <span
+                  className='block h-[92px] w-full overflow-hidden rounded-xl bg-its-cream'
+                  aria-hidden='true'
+                  style={{
+                    backgroundImage: "url('/icons/equipment-category-icons.webp')",
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: '500% 100%',
+                    backgroundPosition: (iconIndex * 25) + '% center',
+                  }}
+                />
                 <p className='mt-5 text-[10px] font-extrabold uppercase tracking-[0.14em] text-its-gray'>{subtitle}</p>
                 <h3 className='mt-2 text-lg font-black'>{title}</h3>
                 <p className='mt-2 text-xs leading-5 text-its-gray'>{description}</p>
