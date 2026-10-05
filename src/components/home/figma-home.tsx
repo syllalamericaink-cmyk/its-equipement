@@ -274,7 +274,7 @@ export default function FigmaHome() {
                         {p.name}
                       </Link>
                       <div className='mt-4 flex items-center justify-between gap-3'>
-                        <span className='text-sm font-extrabold'>{p.basePrice > 0 ? money(p.basePrice) : 'Sur devis'}</span>
+                        <span className='text-sm font-extrabold'>{p.basePrice > 0 ? money(p.basePrice) : 'Prix à définir'}</span>
                         <button
                           type='button'
                           onClick={() => addToCart(p)}
