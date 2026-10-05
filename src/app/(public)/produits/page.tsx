@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { Search, Package, ArrowLeft, ArrowRight, SlidersHorizontal } from 'lucide-react'
+import { Search, Package, ArrowLeft, ArrowRight, SlidersHorizontal, ShieldCheck, Shirt, Footprints, HardHat } from 'lucide-react'
 import { publicFetch, formatCurrency } from '@/lib/public-api'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -229,7 +229,29 @@ function ProduitsPage() {
   }, [categoryIdParam, categories])
 
   return (
-    <section className="mx-auto w-full max-w-[1536px] px-3 py-5 sm:px-6 sm:py-8 lg:px-10">
+    <section className="mx-auto w-full max-w-[1536px] px-3 pb-24 pt-4 sm:px-6 sm:py-8 lg:px-10">
+      <div className="mb-5 overflow-hidden rounded-2xl bg-its-dark px-5 py-7 text-white sm:px-8 sm:py-9">
+        <p className="text-[10px] font-black uppercase tracking-[0.22em] text-its-lime">ITS Équipement · EPI & EPC</p>
+        <h1 className="mt-2 max-w-2xl text-2xl font-black tracking-tight sm:text-4xl">
+          Équipez vos équipes avec les bons équipements de sécurité.
+        </h1>
+        <p className="mt-2 max-w-xl text-xs leading-5 text-white/70 sm:text-sm">
+          EPI, EPC, vêtements professionnels, chaussures de sécurité et personnalisation.
+        </p>
+        <div className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-4">
+          {[
+            { Icon: ShieldCheck, label: 'EPI' },
+            { Icon: HardHat, label: 'EPC' },
+            { Icon: Shirt, label: 'Vêtements' },
+            { Icon: Footprints, label: 'Chaussures' },
+          ].map(({ Icon, label }) => (
+            <div key={label} className="flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2.5 text-xs font-bold">
+              <Icon className="size-4 text-its-lime" />
+              {label}
+            </div>
+          ))}
+        </div>
+      </div>
       <div className="mb-5 sm:mb-7">
         <h1 className="text-[28px] font-black tracking-tight text-its-dark sm:text-4xl">
           {personalizableParam ? 'Produits personnalisables' : 'Catalogue'}
@@ -346,8 +368,9 @@ function ProduitsPage() {
                       aria-label={product.images[0].altText || product.name}
                     />
                   ) : (
-                    <div className="flex h-full w-full items-center justify-center">
-                      <Package className="size-10 text-muted-foreground/30" />
+                    <div className="flex h-full w-full flex-col items-center justify-center bg-[linear-gradient(135deg,#f3f6f8,#e7edf0)] px-3 text-center">
+                      <Package className="size-9 text-its-dark/20" />
+                      <span className="mt-2 text-[9px] font-bold uppercase tracking-wide text-its-gray">Photo à ajouter</span>
                     </div>
                   )}
                   {product.isPersonalizable && (
@@ -364,7 +387,7 @@ function ProduitsPage() {
                     {product.name}
                   </h3>
                   <p className="text-sm font-black text-its-dark sm:text-base">
-                    {formatCurrency(product.basePrice)}
+                    {product.basePrice > 0 ? formatCurrency(product.basePrice) : 'Prix à définir'}
                   </p>
                 </CardContent>
               </Card>
