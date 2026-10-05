@@ -88,7 +88,7 @@ const taxonomy = [
     subtitle: 'Protection individuelle',
     href: '/produits?search=EPI',
     Icon: HardHat,
-    visual: '/visuals/epi.svg',
+    visual: 'https://images.pexels.com/photos/8487719/pexels-photo-8487719.jpeg',
     description: 'Tête, yeux, mains, pieds, corps, antichute et autres protections.',
   },
   {
@@ -96,7 +96,7 @@ const taxonomy = [
     subtitle: 'Protection collective',
     href: '/produits?search=EPC',
     Icon: ShieldCheck,
-    visual: '/visuals/epc.svg',
+    visual: 'https://images.pexels.com/photos/14614017/pexels-photo-14614017.jpeg',
     description: 'Signalisation, sécurité incendie, balisage et équipements collectifs.',
   },
   {
@@ -104,7 +104,7 @@ const taxonomy = [
     subtitle: 'Tenues métier',
     href: '/produits?search=vêtement',
     Icon: Shirt,
-    visual: '/visuals/workwear.svg',
+    visual: 'https://images.pexels.com/photos/35383622/pexels-photo-35383622.jpeg',
     description: 'Tenues de travail, haute visibilité et vêtements adaptés aux métiers.',
   },
   {
@@ -112,7 +112,7 @@ const taxonomy = [
     subtitle: 'Protection des pieds',
     href: '/produits?search=chaussure',
     Icon: Factory,
-    visual: '/visuals/footwear.svg',
+    visual: 'https://images.pexels.com/photos/26107201/pexels-photo-26107201.jpeg',
     description: 'Chaussures et bottes pour chantier, industrie et environnement professionnel.',
   },
   {
@@ -120,7 +120,7 @@ const taxonomy = [
     subtitle: 'Logo & marquage',
     href: '/produits?personalizable=1',
     Icon: Wrench,
-    visual: '/visuals/customization.svg',
+    visual: 'https://images.pexels.com/photos/14614017/pexels-photo-14614017.jpeg',
     description: 'Logo, texte, broderie ou marquage selon les produits disponibles.',
   },
 ]
@@ -189,7 +189,7 @@ export default function FigmaHome() {
   )
 
   const slide = hero[0]
-  const heroImage = slide?.url || epi[0]?.images?.[0]?.url || epc[0]?.images?.[0]?.url || '/visuals/epi.svg'
+  const heroImage = slide?.url || epi[0]?.images?.[0]?.url || epc[0]?.images?.[0]?.url || 'https://images.pexels.com/photos/8487719/pexels-photo-8487719.jpeg'
   const heroTitle = slide?.title || 'EPI & EPC pour protéger vos équipes'
   const heroText =
     slide?.text ||
