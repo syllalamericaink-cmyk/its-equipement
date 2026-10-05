@@ -410,16 +410,9 @@ export default function FigmaHome() {
                 href={href}
                 className='group rounded-[14px] border border-its-border bg-white p-5 transition-all hover:-translate-y-1 hover:border-its-lime hover:shadow-[0_14px_30px_rgba(7,27,46,0.08)]'
               >
-                <span
-                  className='block h-[82px] w-full sm:h-[96px] lg:h-[110px] overflow-hidden rounded-xl bg-its-cream'
-                  aria-hidden='true'
-                  style={{
-                    backgroundImage: "url('/icons/equipment-category-icons.webp')",
-                    backgroundRepeat: 'no-repeat',
-                    backgroundSize: '500% 100%',
-                    backgroundPosition: (iconIndex * 25) + '% center',
-                  }}
-                />
+                <div className='overflow-hidden rounded-xl bg-its-cream'>
+                  <img src={visual} alt='' className='h-[112px] w-full object-cover sm:h-[126px] lg:h-[140px]' loading='lazy' />
+                </div>
                 <p className='mt-3 text-[9px] sm:mt-5 sm:text-[10px] font-extrabold uppercase tracking-[0.14em] text-its-gray'>{subtitle}</p>
                 <h3 className='mt-2 text-base font-black sm:text-lg'>{title}</h3>
                 <p className='mt-2 text-xs leading-5 text-its-gray'>{description}</p>
