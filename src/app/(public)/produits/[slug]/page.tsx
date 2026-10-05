@@ -92,7 +92,13 @@ function LoadingSkeleton() {
 
 function NotFoundState() {
   return (
-    <section className="container mx-auto px-4 py-6 sm:py-8">
+    <section className="mx-auto w-full max-w-[1536px] px-3 pb-24 pt-4 sm:px-6 sm:py-8 lg:px-10">
+      <div className="mb-4 flex items-center justify-between">
+        <Button variant="ghost" size="sm" className="-ml-2 min-h-[44px]" asChild>
+          <Link href="/produits"><ArrowLeft className="mr-1 size-4" />Retour au catalogue</Link>
+        </Button>
+        <Badge variant="outline" className="rounded-full text-[10px] font-bold">{product.category.name}</Badge>
+      </div>
       <Button variant="ghost" size="sm" className="mb-4 min-h-[44px]" asChild>
         <Link href="/produits">
           <ArrowLeft className="size-4 mr-2" />
@@ -197,6 +203,7 @@ export default function ProductDetailPage() {
     : activeVariants.length === 1
       ? minPrice
       : product.basePrice
+  const priceAvailable = displayPrice > 0
 
   // Réductions par quantité (définies dans l'admin) — prévisualisation live
   const quantityDiscounts = product.quantityDiscounts ?? []
@@ -268,7 +275,7 @@ export default function ProductDetailPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
         <div className="space-y-3">
-          <div className="relative rounded-lg overflow-hidden bg-muted">
+          <div className="relative overflow-hidden rounded-2xl border border-its-border bg-its-cream shadow-[0_6px_24px_rgba(7,27,46,0.05)]">
             {sortedImages.length > 0 ? (
               <>
                 <div className="relative aspect-square w-full">
@@ -313,9 +320,9 @@ export default function ProductDetailPage() {
                 )}
               </>
             ) : (
-              <div className="h-72 sm:h-80 lg:h-[480px] flex flex-col items-center justify-center bg-muted rounded-lg">
+              <div className="flex h-72 flex-col items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#f3f6f8,#e7edf0)] sm:h-80 lg:h-[480px]">
                 <Package className="size-12 text-muted-foreground/30 mb-2" />
-                <span className="text-xs text-muted-foreground">Aucune image disponible</span>
+                <span className="mt-2 text-[10px] font-bold uppercase tracking-wide text-its-gray">Photo à ajouter depuis l’administration</span>
               </div>
             )}
           </div>
@@ -366,7 +373,7 @@ export default function ProductDetailPage() {
               </p>
             ) : (
               <p className="text-xl sm:text-2xl font-bold">
-                {formatCurrency(displayPrice)}
+                {priceAvailable ? formatCurrency(displayPrice) : 'Prix à définir'}
               </p>
             )}
             {activeVariants.length > 1 && !hasPriceRange && !selectedVariant && (
@@ -376,7 +383,7 @@ export default function ProductDetailPage() {
             )}
             {currentDiscountPct > 0 && (
               <p className="mt-1 flex items-center gap-1.5 text-sm font-semibold text-emerald-700">
-                Total pour {quantity} : {formatCurrency(currentDiscountedTotal)}
+                Total pour {quantity} : {priceAvailable ? formatCurrency(currentDiscountedTotal) : 'Prix à définir'}
                 <span className="rounded bg-emerald-100 px-1.5 py-0.5 text-[11px] font-bold text-emerald-800">
                   -{currentDiscountPct}%
                 </span>
