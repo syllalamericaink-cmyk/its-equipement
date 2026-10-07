@@ -97,7 +97,6 @@ function NotFoundState() {
         <Button variant="ghost" size="sm" className="-ml-2 min-h-[44px]" asChild>
           <Link href="/produits"><ArrowLeft className="mr-1 size-4" />Retour au catalogue</Link>
         </Button>
-        <Badge variant="outline" className="rounded-full text-[10px] font-bold">{product.category.name}</Badge>
       </div>
       <Button variant="ghost" size="sm" className="mb-4 min-h-[44px]" asChild>
         <Link href="/produits">
