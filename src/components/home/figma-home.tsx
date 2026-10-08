@@ -378,21 +378,6 @@ export default function FigmaHome() {
         </div>
       </section>
 
-      <section className='border-b border-its-border bg-its-cream py-8 sm:py-10'>
-        <div className='mx-auto flex max-w-[1440px] flex-col gap-6 px-5 sm:px-8 lg:flex-row lg:items-center lg:px-16'>
-          <div className='w-full lg:w-[310px]'>
-            <span className='text-[10px] font-extrabold uppercase tracking-[0.18em] text-its-lime'>Entreprises</span>
-            <h2 className='mt-2 text-[26px] font-black'>Besoin de plusieurs références ?</h2>
-            <p className='mt-2 text-[11px] leading-5 sm:text-xs text-its-gray'>
-              Décrivez votre besoin en EPI/EPC et notre équipe prépare une proposition adaptée.
-            </p>
-          </div>
-          <div className='min-w-0 flex-1 rounded-xl bg-white p-4 shadow-[0_8px_24px_rgba(7,27,46,0.08)]'>
-            <HomeQuoteForm />
-          </div>
-        </div>
-      </section>
-
       <section className='bg-white py-14 sm:py-18'>
         <div className='mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-16'>
           <div className='mb-8'>
@@ -446,6 +431,22 @@ export default function FigmaHome() {
           </div>
         </div>
       </section>
+
+      <section className='border-b border-its-border bg-its-cream py-8 sm:py-10'>
+        <div className='mx-auto flex max-w-[1440px] flex-col gap-6 px-5 sm:px-8 lg:flex-row lg:items-center lg:px-16'>
+          <div className='w-full lg:w-[310px]'>
+            <span className='text-[10px] font-extrabold uppercase tracking-[0.18em] text-its-lime'>Entreprises</span>
+            <h2 className='mt-2 text-[26px] font-black'>Besoin de plusieurs références ?</h2>
+            <p className='mt-2 text-[11px] leading-5 sm:text-xs text-its-gray'>
+              Décrivez votre besoin en EPI/EPC et notre équipe prépare une proposition adaptée.
+            </p>
+          </div>
+          <div className='min-w-0 flex-1 rounded-xl bg-white p-4 shadow-[0_8px_24px_rgba(7,27,46,0.08)]'>
+            <HomeQuoteForm />
+          </div>
+        </div>
+      </section>
+
 
       <section id='devis' className='bg-white py-12 sm:py-16 lg:py-20'>
         <div className='mx-auto grid max-w-[1440px] items-center gap-10 px-4 sm:px-8 lg:grid-cols-[1fr_0.9fr] lg:px-16'>
